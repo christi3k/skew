@@ -14,6 +14,7 @@
 import os
 
 from skew.arn import ARN
+from skew.config import set_config
 
 __version__ = open(os.path.join(os.path.dirname(__file__), '_version')).read()
 
@@ -38,3 +39,7 @@ def scan(sku, **kwargs):
     things.
     """
     return ARN(sku, **kwargs)
+
+
+def configure(config_dict):
+    set_config(config_dict)
