@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 import logging
+
+import yaml
 
 from skew.exception import ConfigNotFoundError
 
@@ -24,7 +27,13 @@ _config = None
 def get_config():
     global _config
     if _config is None:
-        raise ConfigNotFoundError('Unable to find skew config file')
+        path = os.environ.get('SKEW_CONFIG', os.path.join('~', '.skew'))
+        path = os.path.expanduser(path)
+        path = os.path.expandvars(path)
+        if not os.path.exists(path):
+            raise ConfigNotFoundError('Unable to find skew config file')
+        with open(path) as config_file:
+            _config = yaml.safe_load(config_file)
     return _config
 
 

@@ -104,8 +104,8 @@ class TestARN(unittest.TestCase):
                    debug=True, **placebo_cfg)
         l = list(arn)
         self.assertEqual(len(l), 2)
-        self.assertEqual(l[0].id, 'admin')
-        self.assertEqual(l[1].id, 'FooBar')
+        self.assertEqual(l[0].id, 'key-0074ea12942819e24')
+        self.assertEqual(l[1].id, 'key-0074ea12942819e25')
         self.assertEqual(
             l[0].data['KeyFingerprint'],
             "85:83:08:25:fa:96:45:ea:c9:15:04:12:af:45:3f:c0:ef:e8:b8:ce")
