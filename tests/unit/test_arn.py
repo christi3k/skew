@@ -133,7 +133,8 @@ class TestARN(unittest.TestCase):
         self.assertEqual(l[0].data['DNSName'], 'example-1111111111.us-east-1.elb.amazonaws.com')
         self.assertEqual(l[0].tags['Name'], 'example-web')
         self.assertEqual(l[0].data['LoadBalancerAttributes']['CrossZoneLoadBalancing']['Enabled'], False)
-        self.assertEqual(l[0].data['PolicyDescriptions'][0]['PolicyName'], 'AWSConsole-SSLNegotiationPolicy-example-1111111111111')
+        self.assertEqual(l[0].data['PolicyDescriptions'][0]['PolicyName'],
+                         'AWSConsole-SSLNegotiationPolicy-example-1111111111111')
 
     def test_ec2_vpcs(self):
         placebo_cfg = {
@@ -263,10 +264,12 @@ class TestARN(unittest.TestCase):
                    debug=True, **placebo_cfg)
         l = list(arn)
         self.assertEqual(len(l), 2)
-        self.assertEqual(l[0].arn, 'arn:aws:acm:us-west-2:123456789012:certificate/aaaaaaaa-bbbb-cccc-dddd-000000000001')
+        self.assertEqual(l[0].arn,
+                         'arn:aws:acm:us-west-2:123456789012:certificate/aaaaaaaa-bbbb-cccc-dddd-000000000001')
         self.assertEqual(l[0].data['DomainName'], 'example.com')
         self.assertEqual(l[0].tags['tld'], '.com')
-        self.assertEqual(l[1].arn, 'arn:aws:acm:us-west-2:123456789012:certificate/aaaaaaaa-bbbb-cccc-dddd-000000000002')
+        self.assertEqual(l[1].arn,
+                         'arn:aws:acm:us-west-2:123456789012:certificate/aaaaaaaa-bbbb-cccc-dddd-000000000002')
         self.assertEqual(l[1].data['DomainName'], 'example.net')
         self.assertEqual(l[1].tags['tld'], '.net')
 
@@ -306,8 +309,8 @@ class TestARN(unittest.TestCase):
             'placebo_dir': self._get_response_path('trail'),
             'placebo_mode': 'playback'}
         arn = scan(
-                    'arn:aws:cloudtrail:us-east-1:123456789012:trail/*',
-                   **placebo_cfg)
+            'arn:aws:cloudtrail:us-east-1:123456789012:trail/*',
+            **placebo_cfg)
         l = list(arn)
         self.assertEqual(len(l), 1)
         print(l[0].tags)
@@ -316,3 +319,16 @@ class TestARN(unittest.TestCase):
                          'arn:aws:logs:us-east-1:123456789012:log-group:CloudTrail/DefaultLogGroup:*')
         print(l[0].tags)
         self.assertEqual(l[0].tags['TestKey'], 'TestValue')
+
+    def test_beanstalk_environments(self):
+        placebo_cfg = {
+            'placebo': placebo,
+            'placebo_dir': self._get_response_path('environments'),
+            'placebo_mode': 'playback'}
+        arn = scan('arn:aws:elasticbeanstalk:us-west-2:123456789012:environment/*',
+                   **placebo_cfg)
+        l = list(arn)
+        r = l[0]
+        self.assertEqual(r.data['EnvironmentName'], "Env1")
+        self.assertEqual(r.arn, "arn:aws:elasticbeanstalk:us-west-2:123456789012:environment/sample-application/Env1")
+        self.assertEqual(r.data['ApplicationName'], "sample-application")
