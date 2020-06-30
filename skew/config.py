@@ -21,7 +21,6 @@ from skew.exception import ConfigNotFoundError
 
 LOG = logging.getLogger(__name__)
 
-
 _config = None
 
 
@@ -36,3 +35,8 @@ def get_config():
         with open(path) as config_file:
             _config = yaml.safe_load(config_file)
     return _config
+
+
+def set_config(config_dict):
+    global _config
+    _config = config_dict
