@@ -19,12 +19,11 @@ LOG = logging.getLogger(__name__)
 
 
 class Alarm(AWSResource):
-
     class Meta(object):
         service = 'cloudwatch'
         type = 'alarm'
         enum_spec = ('describe_alarms', 'MetricAlarms', None)
-        id = 'AlarmArn'
+        id = 'AlarmName'
         filter_name = 'AlarmNames'
         filter_type = 'list'
         detail_spec = None
@@ -32,22 +31,29 @@ class Alarm(AWSResource):
         date = 'AlarmConfigurationUpdatedTimestamp'
         dimension = None
 
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s:%s:%s:%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self._client.account_id,
+            self.resourcetype, self.id)
+
 
 class LogGroup(AWSResource):
-
     class Meta(object):
         service = 'logs'
         type = 'log-group'
         enum_spec = ('describe_log_groups', 'logGroups[]', None)
         attr_spec = [
             ('describe_log_streams', 'logGroupName',
-                'logStreams', 'logStreams'),
+             'logStreams', 'logStreams'),
             ('describe_metric_filters', 'logGroupName',
-                'metricFilters', 'metricFilters'),
+             'metricFilters', 'metricFilters'),
             ('describe_subscription_filters', 'logGroupName',
-                'subscriptionFilters', 'subscriptionFilters'),
+             'subscriptionFilters', 'subscriptionFilters'),
             ('describe_queries', 'logGroupName',
-                'queries', 'queries'),
+             'queries', 'queries'),
         ]
         detail_spec = None
         id = 'logGroupName'
