@@ -332,8 +332,8 @@ class TestARN(unittest.TestCase):
         self.assertEqual(r.data['EnvironmentName'], "Env1")
         self.assertEqual(r.arn, "arn:aws:elasticbeanstalk:us-west-2:123456789012:environment/sample-application/Env1")
         self.assertEqual(r.data['ApplicationName'], "sample-application")
-    
-     def test_alarm(self):
+
+    def test_alarm(self):
         placebo_cfg = {
             'placebo': placebo,
             'placebo_dir': self._get_response_path('alarms'),
