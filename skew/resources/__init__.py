@@ -19,6 +19,7 @@ import importlib
 ResourceTypes = {
     'aws.acm.certificate': 'aws.acm.Certificate',
     'aws.apigateway.restapis': 'aws.apigateway.RestAPI',
+    'aws.apigatewayv2.restapis': 'aws.apigateway.RestAPIV2',
     'aws.autoscaling.autoScalingGroup': 'aws.autoscaling.AutoScalingGroup',
     'aws.autoscaling.launchConfigurationName': 'aws.autoscaling.LaunchConfiguration',
     'aws.cloudfront.distribution': 'aws.cloudfront.Distribution',

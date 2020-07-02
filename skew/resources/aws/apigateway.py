@@ -17,7 +17,6 @@ LOG = logging.getLogger(__name__)
 
 
 class RestAPI(AWSResource):
-
     class Meta(object):
         service = 'apigateway'
         type = 'restapis'
@@ -35,3 +34,31 @@ class RestAPI(AWSResource):
         api_id = data.get(cls.Meta.id)
         LOG.debug('%s == %s', resource_id, api_id)
         return resource_id == api_id
+
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s::/%s/%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self.resourcetype, self.id)
+
+
+class RestAPIV2(AWSResource):
+    class Meta(object):
+        service = 'apigatewayv2'
+        type = 'apis'
+        enum_spec = ('get_apis', 'Items', None)
+        id = 'ApiId'
+        filter_name = None
+        filter_type = None
+        detail_spec = None
+        name = 'name'
+        date = 'createdDate'
+        dimension = 'GatewayName'
+
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s::/%s/%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self.resourcetype, self.id)
