@@ -155,6 +155,8 @@ class Region(ARNComponent):
                          'us-west-2',
                          'eu-west-1',
                          'eu-west-2',
+                         'eu-west-3',
+                         'eu-north-1',
                          'eu-central-1',
                          'ap-southeast-1',
                          'ap-southeast-2',
