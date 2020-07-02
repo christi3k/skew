@@ -129,7 +129,7 @@ class TestARN(unittest.TestCase):
                    **placebo_cfg)
         l = list(arn)
         self.assertEqual(len(l), 1)
-        self.assertEqual(l[0].arn, 'arn:aws:elb:us-east-1:123456789012:loadbalancer/example')
+        self.assertEqual(l[0].arn, 'arn:aws:elasticloadbalancing:us-east-1:123456789012:loadbalancer/example')
         self.assertEqual(l[0].data['DNSName'], 'example-1111111111.us-east-1.elb.amazonaws.com')
         self.assertEqual(l[0].tags['Name'], 'example-web')
         self.assertEqual(l[0].data['LoadBalancerAttributes']['CrossZoneLoadBalancing']['Enabled'], False)
