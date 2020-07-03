@@ -43,7 +43,7 @@ class RestAPI(AWSResource):
             self.resourcetype, self.id)
 
 
-class RestAPIV2(AWSResource):
+class API(AWSResource):
     class Meta(object):
         service = 'apigatewayv2'
         type = 'apis'
@@ -58,7 +58,6 @@ class RestAPIV2(AWSResource):
 
     @property
     def arn(self):
-        return 'arn:aws:%s:%s::/%s/%s' % (
-            self._client.service_name,
+        return 'arn:aws:apigateway:%s::/%s/%s' % (
             self._client.region_name,
             self.resourcetype, self.id)
