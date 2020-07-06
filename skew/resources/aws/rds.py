@@ -15,6 +15,30 @@
 from skew.resources.aws import AWSResource
 
 
+class DBCluster(AWSResource):
+
+    class Meta(object):
+        service = 'rds'
+        type = 'cluster'
+        enum_spec = ('describe_db_clusters', 'DBClusters', None)
+        tags_spec = ('list_tags_for_resource', 'TagList',
+                     'ResourceName', 'arn')
+        detail_spec = None
+        id = 'DBClusterIdentifier'
+        filter_name = 'DBClusterIdentifier'
+        filter_type = 'scalar'
+        name = 'Database.Name'
+        date = 'ClusterCreateTime'
+        dimension = 'DBClusterIdentifier'
+
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s:%s:%s:%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self._client.account_id, self.resourcetype, self.id)
+
+
 class DBInstance(AWSResource):
 
     class Meta(object):
