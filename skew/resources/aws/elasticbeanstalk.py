@@ -8,6 +8,7 @@
 # distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
+import jmespath
 
 from skew.resources.aws import AWSResource
 
@@ -24,6 +25,8 @@ class Application(AWSResource):
         name = 'ApplicationName'
         date = None
         dimension = None
+        tags_spec = ('list_tags_for_resource', 'ResourceTags[]',
+                     'ResourceArn', 'arn')
 
 
 class Environment(AWSResource):
@@ -38,6 +41,8 @@ class Environment(AWSResource):
         name = 'ApplicationName'
         date = None
         dimension = None
+        tags_spec = ('list_tags_for_resource', 'ResourceTags[]',
+                     'ResourceArn', 'arn')
 
     @property
     def arn(self):
@@ -49,3 +54,4 @@ class Environment(AWSResource):
             self.name,
             self.id
         )
+
