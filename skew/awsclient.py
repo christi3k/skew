@@ -134,7 +134,8 @@ class AWSClient(object):
                         done = True
                     elif 'NoSuchTagSet' in str(e):
                         done = True
-                except Exception:
+                except Exception as e:
+                    LOG.debug(e)
                     done = True
         if query:
             data = query.search(data)
