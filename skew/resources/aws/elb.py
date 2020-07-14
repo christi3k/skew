@@ -82,7 +82,7 @@ class LoadBalancerV2(AWSResource):
         date = 'CreatedTime'
         dimension = 'LoadBalancerName'
         tags_spec = ('describe_tags', 'TagDescriptions[].Tags[]',
-                     'ResourceArn', 'id')
+                     'ResourceArns', 'id')
 
 
     @property
