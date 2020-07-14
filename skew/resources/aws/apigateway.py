@@ -42,6 +42,11 @@ class RestAPI(AWSResource):
             self._client.region_name,
             self.resourcetype, self.id)
 
+    def __init__(self, client, data, query=None):
+        super(RestAPI, self).__init__(client, data, query)
+        if any(k.islower() for k in self.data.keys()):
+            self.data = {k.capitalize(): v for k, v in self.data.items()}
+
 
 class API(AWSResource):
     class Meta(object):
@@ -61,3 +66,8 @@ class API(AWSResource):
         return 'arn:aws:apigateway:%s::/%s/%s' % (
             self._client.region_name,
             self.resourcetype, self.id)
+
+    def __init__(self, client, data, query=None):
+        super(API, self).__init__(client, data, query)
+        if any(k.islower() for k in self.data.keys()):
+            self.data = {k.capitalize(): v for k, v in self.data.items()}
