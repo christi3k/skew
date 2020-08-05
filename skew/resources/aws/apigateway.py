@@ -19,7 +19,7 @@ LOG = logging.getLogger(__name__)
 class RestAPI(AWSResource):
     class Meta(object):
         service = 'apigateway'
-        type = 'restapis'
+        type = 'restapi'
         enum_spec = ('get_rest_apis', 'items', None)
         id = 'id'
         filter_name = None
@@ -51,7 +51,7 @@ class RestAPI(AWSResource):
 class API(AWSResource):
     class Meta(object):
         service = 'apigatewayv2'
-        type = 'apis'
+        type = 'api'
         enum_spec = ('get_apis', 'Items', None)
         id = 'ApiId'
         filter_name = None
