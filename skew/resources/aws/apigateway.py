@@ -40,7 +40,7 @@ class RestAPI(AWSResource):
         return 'arn:aws:%s:%s::/%s/%s' % (
             self._client.service_name,
             self._client.region_name,
-            self.resourcetype, self.id)
+            self.resourcetype + 's', self.id)
 
     def __init__(self, client, data, query=None):
         super(RestAPI, self).__init__(client, data, query)
@@ -65,7 +65,7 @@ class API(AWSResource):
     def arn(self):
         return 'arn:aws:apigateway:%s::/%s/%s' % (
             self._client.region_name,
-            self.resourcetype, self.id)
+            self.resourcetype + 's', self.id)
 
     def __init__(self, client, data, query=None):
         super(API, self).__init__(client, data, query)
