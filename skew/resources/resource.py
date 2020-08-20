@@ -114,7 +114,7 @@ class Resource(object):
 
     @property
     def name(self):
-        if not self._name:
+        if not self._name and self.Meta.name:
             self._name = jmespath.search(self.Meta.name, self.data)
         return self._name
 
