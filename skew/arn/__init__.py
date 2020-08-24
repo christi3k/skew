@@ -66,7 +66,7 @@ class ARNComponent(object):
             regex = '.*'
         regex = re.compile(regex)
         for choice in self.choices(context):
-            if regex.search(choice):
+            if regex.fullmatch(choice):
                 matches.append(choice)
         return matches
 
