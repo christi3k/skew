@@ -15,6 +15,7 @@ import os
 
 from skew.arn import ARN
 from skew.config import set_config
+from skew.awsclient import AWSClient
 
 __version__ = open(os.path.join(os.path.dirname(__file__), '_version')).read()
 

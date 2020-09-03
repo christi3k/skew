@@ -13,6 +13,7 @@
 # language governing permissions and limitations under the License.
 
 import importlib
+from .resource import Resource
 
 # Maps resources names as they appear in ARN's to the path name
 # of the Python class representing that resource.
