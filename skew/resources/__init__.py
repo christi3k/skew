@@ -73,6 +73,7 @@ ResourceTypes = {
     'aws.route53.hostedzone': 'aws.route53.HostedZone',
     'aws.route53.healthcheck': 'aws.route53.HealthCheck',
     'aws.s3.bucket': 'aws.s3.Bucket',
+    'aws.secretsmanager.secret': 'aws.secrets.Secret',
     'aws.sqs.queue': 'aws.sqs.Queue',
     'aws.sns.subscription': 'aws.sns.Subscription',
     'aws.sns.topic': 'aws.sns.Topic'
