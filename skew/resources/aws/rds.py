@@ -85,3 +85,24 @@ class DBSecurityGroup(AWSResource):
             self._client.region_name,
             self._client.account_id, self.resourcetype, self.id)
 
+class DBParameterGroups(AWSResource):
+
+    class Meta(object):
+        service = 'rds'
+        type = 'pg'
+        enum_spec = ('describe_db_parameter_groups', 'DBParameterGroups', None)
+        detail_spec = None
+        id = 'DBParameterGroupName'
+        filter_name = 'DBParameterGroupName'
+        filter_type = 'scalar'
+        name = 'Description'
+        date = None
+        dimension = None
+        tags_spec = ('list_tags_for_resource', 'TagList', 'ResourceName', 'arn')
+
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s:%s:%s:%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self._client.account_id, self.resourcetype, self.id)
