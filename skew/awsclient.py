@@ -127,6 +127,8 @@ class AWSClient(object):
                     data = op(**kwargs)
                     done = True
                 except ClientError as e:
+                    print(f"e: {e}")
+                    print(f"kwargs: {kwargs}")
                     LOG.debug(e, kwargs)
                     if 'Throttling' in str(e):
                         time.sleep(1)
@@ -135,6 +137,8 @@ class AWSClient(object):
                     elif 'NoSuchTagSet' in str(e):
                         done = True
                 except Exception as e:
+                    print(f"e: {e}")
+                    print(f"kwargs: {kwargs}")
                     LOG.debug(e)
                     done = True
         if query:
