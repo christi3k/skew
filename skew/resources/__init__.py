@@ -68,6 +68,7 @@ ResourceTypes = {
     'aws.rds.pg': 'aws.rds.DBParameterGroups',
     'aws.rds.snapshot': 'aws.rds.DBSnapshots',
     'aws.rds.og': 'aws.rds.DBOptionGroups',
+    'aws.rds.subgrp': 'aws.rds.DBSubnetGroups',
     'aws.redshift.cluster': 'aws.redshift.Cluster',
     'aws.route53.hostedzone': 'aws.route53.HostedZone',
     'aws.route53.healthcheck': 'aws.route53.HealthCheck',

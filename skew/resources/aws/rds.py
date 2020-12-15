@@ -150,3 +150,26 @@ class DBOptionGroups(AWSResource):
             self._client.service_name,
             self._client.region_name,
             self._client.account_id, self.resourcetype, self.id)
+
+
+class DBSubnetGroups(AWSResource):
+
+    class Meta(object):
+        service = 'rds'
+        type = 'subgrp'
+        enum_spec = ('describe_db_subnet_groups', 'DBSubnetGroups', None)
+        detail_spec = None
+        id = 'DBSubnetGroupName'
+        filter_name = 'DBSubnetGroupName'
+        filter_type = 'scalar'
+        name = 'DBSubnetGroupName'
+        date = None
+        dimension = None
+        tags_spec = ('list_tags_for_resource', 'TagList', 'ResourceName', 'arn')
+
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s:%s:%s:%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self._client.account_id, self.resourcetype, self.id)
