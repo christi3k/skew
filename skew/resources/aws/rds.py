@@ -173,3 +173,26 @@ class DBSubnetGroups(AWSResource):
             self._client.service_name,
             self._client.region_name,
             self._client.account_id, self.resourcetype, self.id)
+
+class DBClusterSnapshots(AWSResource):
+
+    class Meta(object):
+        service = 'rds'
+        type = 'cluster-snapshot'
+        enum_spec = ('describe_db_cluster_snapshots', 'DBClusterSnapshots', None)
+        detail_spec = None
+        id = 'DBClusterSnapshotIdentifier'
+        filter_name = 'DBClusterSnapshotIdentifier'
+        filter_type = 'scalar'
+        name = 'DBClusterSnapshotIdentifier'
+        date = None
+        dimension = None
+        tags_spec = ('list_tags_for_resource', 'TagList', 'ResourceName', 'arn')
+
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s:%s:%s:%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self._client.account_id, self.resourcetype, self.id)
+

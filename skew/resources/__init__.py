@@ -67,6 +67,7 @@ ResourceTypes = {
     'aws.rds.secgrp': 'aws.rds.DBSecurityGroup',
     'aws.rds.pg': 'aws.rds.DBParameterGroups',
     'aws.rds.snapshot': 'aws.rds.DBSnapshots',
+    'aws.rds.cluster_snapshot': 'aws.rds.DBClusterSnapshots',
     'aws.rds.og': 'aws.rds.DBOptionGroups',
     'aws.rds.subgrp': 'aws.rds.DBSubnetGroups',
     'aws.redshift.cluster': 'aws.redshift.Cluster',
