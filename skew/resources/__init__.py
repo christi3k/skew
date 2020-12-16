@@ -66,6 +66,7 @@ ResourceTypes = {
     'aws.rds.db': 'aws.rds.DBInstance',
     'aws.rds.secgrp': 'aws.rds.DBSecurityGroup',
     'aws.rds.pg': 'aws.rds.DBParameterGroups',
+    'aws.rds.cluster-pg': 'aws.rds.DBClusterParameterGroups',
     'aws.rds.snapshot': 'aws.rds.DBSnapshots',
     'aws.rds.cluster_snapshot': 'aws.rds.DBClusterSnapshots',
     'aws.rds.og': 'aws.rds.DBOptionGroups',

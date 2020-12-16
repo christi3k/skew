@@ -196,3 +196,25 @@ class DBClusterSnapshots(AWSResource):
             self._client.region_name,
             self._client.account_id, self.resourcetype, self.id)
 
+class DBClusterParameterGroups(AWSResource):
+
+    class Meta(object):
+        service = 'rds'
+        type = 'cluster-pg'
+        enum_spec = ('describe_db_cluster_parameter_groups', 'DBClusterParameterGroups', None)
+        detail_spec = None
+        id = 'DBClusterParameterGroupName'
+        filter_name = 'DBClusterParameterGroupName'
+        filter_type = 'scalar'
+        name = 'Description'
+        date = None
+        dimension = None
+        tags_spec = ('list_tags_for_resource', 'TagList', 'ResourceName', 'arn')
+
+    @property
+    def arn(self):
+        return 'arn:aws:%s:%s:%s:%s:%s' % (
+            self._client.service_name,
+            self._client.region_name,
+            self._client.account_id, self.resourcetype, self.id)
+
